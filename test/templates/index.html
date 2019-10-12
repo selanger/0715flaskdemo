@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>我是  index </h1>
+<h2>变量的使用</h2>
+{{ name }}
+{{age}}
+<hr>
+<h2> </h2>
+{{name.upper()}}
+{{name.replace("e","xxxx")}}
+<hr>
+{{name.1}}
+{{name + "好水"}}
+{{name.split("l")}}
+
+<h2>jinja2循环</h2>
+    {% for one in name %}
+        {{one}}<br>
+    {% endfor%}
+<h2>jinja2判断</h2>
+    {% if name == "hello"%}
+        {{name}}
+    {% else %}
+        <span>没有名字</span>
+    {% endif %}
+
+
+{{ mydict.get("yuwen") }}
+
+{% for key,value in mydict.items() %}
+    {{key}}：{{value}}
+{% endfor %}
+
+<img src="/static/mn.jpg" alt="">
+
+
+
+</body>
+</html>
