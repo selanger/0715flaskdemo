@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block label %}
+    请假记录
+    <a class="btn btn-primary" href="/leave_list/" style="float: right;margin-right: 5%;">请假</a>
+{% endblock %}
+{% block content %}
+    <table class="table table-bordered">
+        <tr>
+            <th>假条编号</th>
+            <th>请假人</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        {% for one in leave %}
+            <tr>
+
+                    <td>{{ one.id }}</td>
+                    <td>{{ one.request_name }}</td>
+                    <td>{{ one.request_start }}</td>
+                    <td>{{ one.request_end }}</td>
+                    {% if one.request_status == 0 %}
+                     <td>审核中</td>
+                    {% elif one.request_status == 1 %}
+                        <td>通过</td>
+                    {% elif one.request_status == 2 %}
+                        <td>驳回</td>
+                    {% elif one.request_status == 3 %}
+                        <td>销假</td>
+                    {% endif %}
+
+
+                    <td>
+                        <button class="btn btn-google">审核</button>
+                    </td>
+
+            </tr>
+        {% endfor %}
+
+
+
+    </table>
+
+{% endblock %}

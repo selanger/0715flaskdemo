@@ -65,7 +65,7 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">考勤列表</h6>
-            <a class="collapse-item" href="buttons.html">违规情况</a>
+            <a class="collapse-item" href="/leave_all_list/">考勤详情</a>
             <a class="collapse-item" href="cards.html">数据统计</a>
           </div>
         </div>
@@ -316,9 +316,9 @@
                   Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                <a class="dropdown-item" href="/logout/"  >
                   <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Logout
+                  登出
                 </a>
               </div>
             </li>
@@ -332,7 +332,7 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-4 text-gray-800">{% block label %}base页{% endblock %}</h1>
+          <h1 class="h3 mb-4 text-gray-800">{% block label %}{% endblock %}</h1>
           {% block  content %}
           {% endblock %}
         </div>
