@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block label %}
+    任务发布
+{% endblock %}
+{% block content %}
+    <form action="" method="post">
+    {% for t in task %}
+        <p>
+        {{ t }}
+        </p>
+    {% endfor %}
+        <input type="submit" class="btn btn-google btn-block " value="提交">
+    </form>
+
+    <p style="color: red">
+    {% for key,value in error.items() %}
+        {{ key }}:{{ value }}
+    {% endfor %}
+{#    {{ error }}#}
+    </p>
+
+
+
+{% endblock %}

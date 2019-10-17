@@ -14,7 +14,7 @@
             <th>状态</th>
             <th>操作</th>
         </tr>
-        {% for one in leave %}
+        {% for one in page_data %}
             <tr>
 
                     <td>{{ one.id }}</td>
@@ -33,7 +33,7 @@
 
 
                     <td>
-                        <button class="btn btn-google">审核</button>
+                        <button class="btn btn-google chexiao" cx_id="{{ one.id }}">撤销</button>
                     </td>
 
             </tr>
@@ -42,5 +42,63 @@
 
 
     </table>
+     <ul class="pagination" style="float: right;">
+        {% if not pager.is_start %}
+            <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ pager.previous_page }}/" class="page-link">上一页</a>
+              </li>
+     {% endif %}
 
+          {% for p in pager.page_range %}
+              {% if p == page %}
+            <li class="paginate_button page-item previous active">
+              <a href="/leave_all_list/{{ p }}/" class="page-link">{{ p }}</a>
+              </li>
+              {% else %}
+                  <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ p }}/" class="page-link">{{ p }}</a>
+              </li>
+
+              {% endif %}
+          {% endfor %}
+
+          {% if not pager.is_end %}
+            <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ pager.next_page }}/" class="page-link">下一页</a>
+              </li>
+     {% endif %}
+
+     </ul>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+    $(".chexiao").each(
+        function () {
+            $(this).click(
+                function () {
+                    var id = $(this).attr("cx_id");
+                    $.ajax(
+                        {
+                            url:"/chexiao/",
+                            type:"post",
+                            data:{"id":id},
+                            success:function (data) {
+                                console.log(data);
+                                alert(data["msg"]);
+                                window.location.reload();  //  重新加载
+                            },
+                            error:function (error) {
+                                console.log(error)
+                            }
+                        }
+                    )
+                }
+            )
+
+        }
+    )
+
+    </script>
 {% endblock %}

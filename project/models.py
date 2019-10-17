@@ -21,6 +21,7 @@ class UserInfo(BaseModel):
     name = db.Column(db.String(32))
     age = db.Column(db.Integer)
     time = db.Column(db.DATETIME,default=datetime.datetime.now())  ## auto_now = True
+    sex = db.Column(db.Integer)
 class User(BaseModel):
     __tablename__ = "user"
     name = db.Column(db.String(32))
@@ -43,7 +44,7 @@ class Leave(BaseModel):
     request_id = db.Column(db.Integer)  ## 请假人id
     request_name = db.Column(db.String(32))  ## 请假人姓名
     request_type = db.Column(db.String(32))    ### 假期类型
-    request_start = db.Column(db.DATE)    ## 请假的开始时间
+    request_start = db.Column(db.DATE)    ## 请假的开始时间   "2019-07-01"
     request_end = db.Column(db.DATE)     ## 请假的结束时间
     request_description = db.Column(db.TEXT)   ## 请假描述
     request_phone = db.Column(db.String(11))    ###联系人手机号
