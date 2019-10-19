@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block label %}
+    请假记录
+    <a class="btn btn-primary" href="/leave_list/" style="float: right;margin-right: 5%;">请假</a>
+{% endblock %}
+{% block content %}
+    <table class="table table-bordered">
+        <tr>
+            <th>假条编号</th>
+            <th>请假人</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>状态</th>
+            <th>操作</th>
+        </tr>
+        {% for one in page_data %}
+            <tr>
+
+                    <td>{{ one.id }}</td>
+                    <td>{{ one.request_name }}</td>
+                    <td>{{ one.request_start }}</td>
+                    <td>{{ one.request_end }}</td>
+                    {% if one.request_status == 0 %}
+                     <td>审核中</td>
+                    {% elif one.request_status == 1 %}
+                        <td>通过</td>
+                    {% elif one.request_status == 2 %}
+                        <td>驳回</td>
+                    {% elif one.request_status == 3 %}
+                        <td>销假</td>
+                    {% endif %}
+
+
+                    <td>
+                        <button class="btn btn-google chexiao" cx_id="{{ one.id }}">撤销</button>
+                    </td>
+
+            </tr>
+        {% endfor %}
+
+
+
+    </table>
+     <ul class="pagination" style="float: right;">
+        {% if not pager.is_start %}
+            <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ pager.previous_page }}/" class="page-link">上一页</a>
+              </li>
+     {% endif %}
+
+          {% for p in pager.page_range %}
+              {% if p == page %}
+            <li class="paginate_button page-item previous active">
+              <a href="/leave_all_list/{{ p }}/" class="page-link">{{ p }}</a>
+              </li>
+              {% else %}
+                  <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ p }}/" class="page-link">{{ p }}</a>
+              </li>
+
+              {% endif %}
+          {% endfor %}
+
+          {% if not pager.is_end %}
+            <li class="paginate_button page-item previous">
+              <a href="/leave_all_list/{{ pager.next_page }}/" class="page-link">下一页</a>
+              </li>
+     {% endif %}
+
+     </ul>
+
+{% endblock %}
+
+{% block script %}
+    <script>
+    $(".chexiao").each(
+        function () {
+            $(this).click(
+                function () {
+                    var id = $(this).attr("cx_id");
+                    $.ajax(
+                        {
+                            url:"/chexiao/",
+                            type:"post",
+                            data:{"id":id},
+                            success:function (data) {
+                                console.log(data);
+                                alert(data["msg"]);
+                                window.location.reload();  //  重新加载
+                            },
+                            error:function (error) {
+                                console.log(error)
+                            }
+                        }
+                    )
+                }
+            )
+
+        }
+    )
+
+    </script>
+{% endblock %}

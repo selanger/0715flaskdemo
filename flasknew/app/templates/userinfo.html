@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}
+    个人中心
+{% endblock %}
+{% block label %}
+    个人中心
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+
+            <div class="col-xl-12 col-lg-7">
+
+              <!-- Area Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">个人详情</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <tr>
+                            <td rowspan="3" style="width: 300px">
+                                <img src="/static/img/pyy.jpg" style="width: 100%;height: 80%" alt="">
+                            </td>
+                            <th>姓名</th>
+                            <td>老王</td>
+                            <th>年龄</th>
+                            <td>19</td>
+                        </tr>
+                        <tr>
+                            <th>性别</th>
+                            <td>男</td>
+                            <th>身份</th>
+                            <td>讲师</td>
+                        </tr>
+                        <tr>
+                            <th>学科</th>
+                            <td>python</td>
+                            <th>阶段</th>
+                            <td>第二阶段，第三阶段</td>
+                        </tr>
+                    </table>
+                </div>
+              </div>
+
+              <!-- Bar Chart -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">课程表</h6>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>星期一</th>
+                            <th>星期二</th>
+                            <th>星期三</th>
+                            <th>星期四</th>
+                            <th>星期五</th>
+                            <th>星期六</th>
+                            <th>星期日</th>
+                        </tr>
+                        {% for one in result %}
+                        <tr>
+                        {% for data in one %}
+                            <td>{{ data }}</td>
+                        {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </table>
+
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Donut Chart -->
+
+          </div>
+{% endblock %}
